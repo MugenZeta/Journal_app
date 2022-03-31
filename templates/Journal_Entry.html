@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  {% block content %}
+
+    <table class="table">
+        <TR>
+           	<TD><b>Posts</b></TD>
+            <TD><b>Date Of Posts</b></TD>
+	        <TD></TD>
+        </TR>
+        <TR>
+            {% for row in data %}
+                <TD>{{ row }}</TD>
+            {% endfor %}
+        </TR>
+    </table>
+{% endblock %}
+
+</body>
+</html>
