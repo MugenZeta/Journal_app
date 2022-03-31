@@ -148,25 +148,19 @@
                     <div class="FORMPOS">
                         <form id="Edit_entry" action="{{ url_for('edit_entry') }}" method="post">
 
-                            <label class="form-label" for="NEW_CONTACT_firstName">Title</label>
-                            <input class="form-control" type="text" id="EDIT_CONTACT_firstname" name="NEW_CONTACT_firstname" placeholder="{{ FirstName }}">
+                            <label class="form-label" for="Edit_entry_Title">Title</label>
+                            <input class="form-control" type="text" id="Edit_entry_Title" name="Edit_entry_Title" placeholder="{{ post_title }}">
 
-                            <label class="form-label" for="NEW_CONTACT_lastName">Last Name</label>
-                            <input class="form-control" type="text" id="EDIT_CONTACT_lastName" name="NEW_CONTACT_lastName" placeholder="{{ LastName }}">
-
-                            <label class="form-label" for="NEW_CONTACT_phoneNumber">Phone Number</label>
-                            <input class="form-control" type="text" id="EDIT_CONTACT_phoneNumber" name="NEW_CONTACT_phoneNumber" placeholder="{{ PhoneNumber }}">
-
-                            <label class="form-label" for="NEW_CONTACT_address">Address</label>
-                            <input class="form-control" type="text" id="EDIT_CONTACT_address" name="NEW_CONTACT_address" placeholder="{{ Address }}">
+                            <label class="form-label" for="Edit_entry_Body">entry</label>
+                            <textarea class="form-control" type="text" id="Edit_entry_Body" name="Edit_entry_Body" placeholder="{{ post_content }}" row="6"></textarea>
                             <br>
 
                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="offcanvas">Close</button>
-                            <button type="submit" form="EditContactForm" class="btn btn-outline-success">Change entry</button>
+                            <button type="submit" form="Edit_entry" class="btn btn-outline-success">Change entry</button>
                         </form>
                     </div>
                 </div>
-         </div>
+            </div>
 
             <!--MODAL FOR DELETING CONTACT---------->
             <div id="Delete_entry" class="modal fade" role="dialog">
@@ -216,7 +210,7 @@
                     </TR>
                 {% for item in index %}
                     <TR>
-                        {% for row in data %}
+                        {% for row in post_title %}
                             <TD>{{ post_title }}</TD>
                         {% endfor %}
                         <TD><button type="button" class="btn btn-warning btn-lg" data-bs-toggle="offcanvas" data-bs-target="#Edit_entry">Edit Contact <i class="bi bi-person-lines-fill"></i></button>

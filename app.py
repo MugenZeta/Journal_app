@@ -69,11 +69,20 @@ def load_data():
     return render_template('index.html')
 
 @app.route('/edit_entry', methods=['GET','POST'])
-def edit_entry():
-    get_entry = db.child('Posts')
+def edit_entry(title, body):
+    if request.method == 'POST':
+        get_entry_Title = request.form['Edit_entry_Title']
+        get_entry_Body = request.form['Edit_entry_']
+        if len(get_entry_Title) != 0:
+            db.child('Posts').child('entries').update(get_entry_Title)
+            db.child('Posts').child('entries').update(get_entry_Body)
+        return redirect('home')
+
+
 
 @app.route('/delete_entry', methods = ['GET', 'POST'])
 def delete_entry():
+    return redirect('home')
 
 
 
