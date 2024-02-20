@@ -1,21 +1,23 @@
 from Functions import *
 
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
 def index():
-    action_log_in = LogIn()
-    action_sign_up = SignUp()
+    action_log_in = log_in()
+    action_sign_up = sign_up()
     entry_titles = db.child('Posts').child('entries').get()
     for entry in entry_titles.each():
         title = entry.key()
         body = entry.val()
 
         print(entry.key())
-    return render_template('index.html', action_sign_up = action_sign_up, action_log_in = action_log_in,  post_title=title)
+    return render_template('index.html', action_sign_up=action_sign_up, action_log_in=action_log_in, post_title=title)
+
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
-def LogIn():
+def log_in():
     if request.method == 'POST':
         email = request.form["USER_EMAIL"]
         password = request.form["USER_PASSWORD"]
@@ -27,9 +29,10 @@ def LogIn():
             return render_template('index.html')
     return render_template('index.html')
 
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/signup', methods=['GET', 'POST'])
-def SignUp():
+def sign_up():
     if request.method == 'POST':
         email = request.form["NEW_USER_EMAIL"]
         password = request.form["NEW_USER_PASSWORD"]
@@ -39,6 +42,7 @@ def SignUp():
         except:
             return 'Email Already in use'
     return render_template('index.html')
+
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/create_post', methods=['GET', 'POST'])
@@ -55,6 +59,7 @@ def create_post():
             print('Post Failure')
             return render_template('index.html')
 
+
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/load_data', methods=['GET', 'POST'])
 def load_data():
@@ -68,7 +73,8 @@ def load_data():
         return render_template('index.html', post_title=title, post_content=body)
     return render_template('index.html')
 
-@app.route('/edit_entry', methods=['GET','POST'])
+
+@app.route('/edit_entry', methods=['GET', 'POST'])
 def edit_entry(title, body):
     if request.method == 'POST':
         get_entry_Title = request.form['Edit_entry_Title']
@@ -79,16 +85,9 @@ def edit_entry(title, body):
         return redirect('home')
 
 
-
-@app.route('/delete_entry', methods = ['GET', 'POST'])
+@app.route('/delete_entry', methods=['GET', 'POST'])
 def delete_entry():
     return redirect('home')
-
-
-
-
-
-
 
 
 if __name__ == '__main__':
